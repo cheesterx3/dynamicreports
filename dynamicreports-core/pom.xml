@@ -5,8 +5,9 @@
     <parent>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-parent</artifactId>
-        <version>6.12.2-SNAPSHOT</version>
+        <version>6.13.0-SNAPSHOT</version>
     </parent>
+    <version>6.13.0-SNAPSHOT</version>
 
     <artifactId>dynamicreports-core</artifactId>
     <packaging>jar</packaging>
@@ -107,8 +108,9 @@
         <plugins>
             <!--Works perfectly with java8 why should we change this?-->
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
+                <groupId>com.evolvedbinary.maven.jvnet</groupId>
+                <artifactId>jaxb30-maven-plugin</artifactId>
+                <version>0.15.0</version>
                 <configuration>
                     <schemaIncludes>
                         <schemaInclude>**/dynamicreports.xsd</schemaInclude>
@@ -356,9 +358,9 @@
                 <plugins>
                     <!--We have to upgrade for jaxb api to work in java9-->
                     <plugin>
-                        <groupId>org.jvnet.jaxb2.maven2</groupId>
-                        <artifactId>maven-jaxb23-plugin</artifactId>
-                        <version>0.14.0</version>
+                        <groupId>com.evolvedbinary.maven.jvnet</groupId>
+                        <artifactId>jaxb30-maven-plugin</artifactId>
+                        <version>0.15.0</version>
                         <configuration>
                             <schemaIncludes>
                                 <schemaInclude>**/dynamicreports.xsd</schemaInclude>
@@ -379,7 +381,7 @@
                         </executions>
                     </plugin>
                     <!--Disable this version in java9-->
-                    <plugin>
+                    <!--<plugin>
                         <groupId>org.jvnet.jaxb2.maven2</groupId>
                         <artifactId>maven-jaxb2-plugin</artifactId>
                         <version>0.13.1</version>
@@ -395,11 +397,11 @@
                         <executions>
                             <execution>
                                 <id>jaxb</id>
-                                <!--This is how you disable it-->
+                                &lt;!&ndash;This is how you disable it&ndash;&gt;
                                 <phase>none</phase>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
@@ -466,6 +468,7 @@
                     <groupId>javax.xml.bind</groupId>
                     <artifactId>jaxb-api</artifactId>
                     <version>${jaxb-apiVersion}</version>
+                    <scope>test</scope>
                 </dependency>
                 <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core -->
                 <dependency>
@@ -484,6 +487,11 @@
                     <groupId>com.sun.xml.bind</groupId>
                     <artifactId>jaxb-impl</artifactId>
                     <version>${jaxb-implVersion}</version>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                    <version>${jakarta-apiVersion}</version>
                 </dependency>
             </dependencies>
         </profile>
